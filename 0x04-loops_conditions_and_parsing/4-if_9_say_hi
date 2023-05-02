@@ -11,4 +11,3 @@ do
 	echo "Best School"
 	((counter++))
 done
-â
