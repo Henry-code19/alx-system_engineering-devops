@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#displays I love you Lord Jesus!
+#in between eaxh iteration of loop, add a sleep 2
+while true
+do
+	echo "I love you Lord Jesus!"
+	sleep 2
+done
