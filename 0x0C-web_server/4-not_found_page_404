@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script installs nginx with custom index page,
+# adds redirect to the https://cu7io.us
+# adds custom 404 page
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
+line="location /redirect_me {rewrite ^/(.*)$ https://cu7io.us permanent;\n}"
+sudo sed -i "30i $line" /etc/nginx/sites-available/default
+
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
+errorPage=" error_page 404 /404.html;\nlocation = /404.html {\nroot /usr/share/nginx/html;\ninternal;}\n"
+sudo sed -i "32i $errorPage" /etc/nginx/sites-available/default
+
+sudo service nginx restart
